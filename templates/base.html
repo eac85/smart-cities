@@ -1,0 +1,22 @@
+<!Doctype html>
+<html>
+<head>
+ <body>
+   <div class = "top">
+   <h1 id="header"> CLIPPETY DO DAH </h1>
+   <div class="nav">
+   <a href="/">home</a>
+   <a href="/register">register</a>
+   {% if u != "temp" %} 
+   <a href="/logout">logout</a>
+   {% else %}
+   <a href="/login">login</a>
+   {% endif %}
+   </div>
+ </div>
+
+  {% block content %}
+    {% endblock %}
+   
+  </body>
+</html>

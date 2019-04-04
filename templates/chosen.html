@@ -1,0 +1,150 @@
+<!Doctype html>
+<html>
+	<head> 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<style>
+			body {
+				margin: 0px;
+				background-color: #A5DBFC;
+				position:absolute; top:0; bottom:0; right:0; left:0;
+			}
+
+			html { height:100%; }
+
+			#grass {
+				position: absolute;
+				bottom: 0px;
+				height: 200px;
+				background-color: #006400;
+				width:100%;
+				z-index: -5;
+			}
+
+			@font-face{
+				font-family: Marker;
+				src: url("static/fonts/Comic Marker Deluxe.otf");
+			}
+
+
+			img { 
+				height: 500px; 
+			}
+
+			.community {
+				opacity: 0;
+				-webkit-transition: opacity 5s; /* For Safari 3.1 to 6.0 */
+  				transition: opacity 5s;
+			}
+
+			#community {
+				left: 2px;
+				width:100%;
+				position: absolute;
+				bottom: 0px;
+				display: inline-block;
+				z-index: 2;
+				
+			}
+
+			.explanation {
+				padding-left: 50px;
+				padding-right: 50px;
+				display: none;
+				font-size: 30px;
+				margin-top: 20px;
+				text-align: center;
+			}
+
+			#restaurant {
+				bottom: 0px;
+				position: absolute;
+				left: 0px;
+			}
+
+			#house {
+				bottom: 0px;
+				position: absolute;
+				left: 250px;
+			}
+			#transport {
+				bottom: 0px;
+				position: absolute;
+				left: 1000px;
+			}
+
+			#transport img{
+				height: 200px;
+			}
+
+			#recreation {
+				bottom: 0px;
+				position: absolute;
+				left: 900px;
+			}
+
+			#explanationBox {
+				text-align: center;
+				display: inline-block;
+				position: absolute;
+				left: 100px;
+				right: 100px;
+				background-color: #FFFAF0;
+				top: 50px;
+				font-size: 30px;
+			}
+
+
+		</style>
+	</head>
+<body>
+
+	<div id="explanationBox">
+		<div class="explanation" > By choosing a home in a New Urbanism community, you are choosing safer city planning, you are guaranteed a healthier lifestyle, and you are contributing to the elimination of sprawl </div>
+		<div class="explanation" > By choosing the {{ restaurant }}, {{ restaurantExplanation }} </div>
+		<div class="explanation" > By choosing the {{ recreation }},  {{ recreationExplanation }} </div>
+		<div class="explanation" > By choosing the {{ transport }},  {{ transportExplanation }} </div>
+	</div>
+
+	<div id="community">
+		<div id='house'> <img class="community" src="static/images/{{house}}" alt="Logo"> </div> 
+		<div id='restaurant'> <img class="community" src="static/images/{{restaurant}}" alt="Logo"> </div>
+		<div id='recreation'> <img class="community" src="static/images/{{recreation}}" alt="Logo"> </div>
+		<div id='transport'> <img class="community" src="static/images/{{transport}}" alt="Logo"> </div>
+	</div>
+
+	<div id="grass"> </div>
+</body>
+
+	<script>
+
+		index = 0;
+		console.log(document.getElementsByClassName("explanation")[index]);
+		document.getElementsByClassName("explanation")[index].style.display = 'block'
+		console.log(document.getElementsByClassName("community")[index]);
+		document.getElementsByClassName("community")[index].style.opacity = '1';
+		index += 1;
+		interval = setInterval(function(){
+			document.getElementsByClassName("explanation")[index - 1].style.display = 'none'
+			document.getElementsByClassName("explanation")[index].style.display = 'block'
+			document.getElementsByClassName("community")[index].style.opacity = '1';
+			index += 1;
+			if(index == 4){
+				clear(interval)
+			}
+		}, 10000)
+
+		function clear(inter){
+			clearInterval(interval)
+		}
+
+
+		$( ".community" ).click(function() {
+		  var index = $( ".community" ).index( this );
+		  document.getElementById('explanationBox').innerHTML = document.getElementsByClassName("explanation")[index].innerHTML
+		});
+		
+
+	</script>
+</html>
+
+

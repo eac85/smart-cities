@@ -1,0 +1,86 @@
+<!Doctype html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<style>
+
+		form img {
+			width: 200px;
+		}
+
+		body {
+			margin-left: 100px ;
+		}
+	</style>
+</head>
+<body>
+	<h1> New Urbanism </h1>
+	<h2> Design your perfect community </h2>
+	<h3> Choose your ideal house </h3>
+	<form action="" id="house">
+	  <input type="radio" name="house" value="house1.png" checked> <img src="static/images/house1.png" alt="Logo"><br>
+	  <input type="radio" name="house" value="house2.png"> <img src="static/images/house2.png" alt="Logo"><br>
+	  <input type="radio" name="house" value="house3.png"> <img src="static/images/house3.png" alt="Logo"><br> 
+	  <input type="radio" name="house" value="house4.png"> <img src="static/images/house4.png" alt="Logo"><br>  
+	</form>
+
+
+	<h3> Choose your favorite place to eat </h3>
+	<form action="" id="eatery">
+	  <input type="radio" name="shops" value="icecreamshop.png" checked> <img src="static/images/icecreamshop.png" alt="Logo"><br>
+	  <input type="radio" name="shops" value="pizzaShop.png"> <img src="static/images/pizzashop.png" alt="Logo"><br>
+	  <input type="radio" name="shops" value="cafeshop.png"> <img src="static/images/cafeshop.png" alt="Logo"><br> 
+	  <input type="radio" name="shops" value="bakery.png"> <img src="static/images/bakery.png" alt="Logo"><br>  
+	</form>
+
+	<h3> Choose your favorite recreational shop </h3>
+	<form action="" id="recreation">
+	  <input type="radio" name="rec" value="flowershop.png" checked> <img src="static/images/flowershop.png" alt="Logo"><br>
+	  <input type="radio" name="rec" value="bookshop.png"> <img src="static/images/bookshop.png" alt="Logo"><br>
+	  <input type="radio" name="rec" value="pharmacy.png"> <img src="static/images/pharmacy.png" alt="Logo"><br> 
+	  <input type="radio" name="rec" value="laundry.png"> <img src="static/images/laundry.png" alt="Logo"><br>  
+	</form>
+
+
+	<h3> What is your favorite sustainable form of transportation </h3>
+	<form action="" id="transport">
+	  <input type="radio" name="transport" value="bike.png" checked> <img src="static/images/bike.png" alt="Logo"><br>
+	  <input type="radio" name="transport" value="bus.png"> <img src="static/images/bus.png" alt="Logo"><br>
+	  <input type="radio" name="transport" value="walk.png"> <img src="static/images/walk.png" alt="Logo"><br> 
+	  <input type="radio" name="transport" value="train.png"> <img src="static/images/train.png" alt="Logo"><br>  
+	</form>
+
+	<button onclick="submit()">  Submit </button>
+</body>
+	<script> 
+
+		function makeRequest(method, url, data, callback) {
+            var req = new XMLHttpRequest();
+
+            req.onreadystatechange = function () {
+            	callback(req);
+            }
+
+            req.open(method, url, true);
+
+            if (data) {
+            	req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                req.send(data);
+            } else {
+                req.send();
+            }
+         }
+
+         function submit(){
+         	data = "house="+document.querySelector('input[name="house"]:checked').value+"&restaurant="+document.querySelector('input[name="shops"]:checked').value+
+				"&recreation="+document.querySelector('input[name="rec"]:checked').value+"&transport="+document.querySelector('input[name="transport"]:checked').value;
+			console.log(data)
+         	makeRequest('POST', '/submit', data, function(xhttp){
+         		if(xhttp.status == 204){
+         			window.location.href = '/dashboard';
+         		}
+         	})
+
+         }
+	</script>
+</html>

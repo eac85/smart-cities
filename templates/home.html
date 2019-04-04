@@ -1,0 +1,373 @@
+<!Doctype html>
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<style>
+
+		body{
+			width: 100%;
+			margin: 0;
+			background-color: #FFFAF0;
+			text-align: center;
+			transition: background-color 15s;
+		}
+
+		#title {
+			-webkit-transition: font-size 5s; /* For Safari 3.1 to 6.0 */
+  			transition: font-size 5s;
+		}
+
+		.ml1 {
+		  font-weight: 900;
+		  font-size: 13em;
+		  font-family: HomenuliShadow;
+		  color: black;
+		}
+
+		
+		.ml1 .letter {
+		  display: inline-block;
+		  line-height: 1em;
+		}
+
+		.ml1 .text-wrapper {
+		  position: relative;
+		  display: inline-block;
+		  padding-top: 0.1em;
+		  padding-right: 0.05em;
+		  padding-bottom: 0.15em;
+		}
+
+		.ml1 .line {
+		  opacity: 0;
+		  position: absolute;
+		  left: 0;
+		  height: 3px;
+		  width: 100%;
+		  background-color: black;
+		  transform-origin: 0 0;
+		}
+
+		.ml1 .line1 { top: 0; }
+		.ml1 .line2 { bottom: 0; }
+
+		@font-face{
+			font-family: ALBAS;
+			src: url(static/fonts/ALBAS.TTF);
+		}
+
+		@font-face{
+			font-family: HomenuliShadow;
+			src: url(static/fonts/HomenuliShadow.ttf);
+		}
+
+		@font-face{
+			font-family: Sketch;
+			src: url(static/fonts/Sketch.otf);
+		}
+
+		@font-face{
+			font-family: Marker;
+			src: url("static/fonts/Comic Marker Deluxe.otf");
+		}
+
+
+		#houseChoice {
+			text-align: center;
+			-webkit-transition: opacity 5s; /* For Safari 3.1 to 6.0 */
+  			transition: opacity 5s;
+		}
+
+		.survey {
+			opacity: 0;
+			text-align: center;
+			-webkit-transition: opacity 5s; /* For Safari 3.1 to 6.0 */
+  			transition: opacity 5s;
+		}
+
+		.survey table {
+			display: inline-block;
+		}
+		
+
+		.survey img {
+			width: 300px;
+		}
+
+		.survey td {
+			background-color: #FFE4E1
+		}
+
+		h3{
+			padding-top: 10px;
+			font-family: Marker;
+			font-size: 50px;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="title"class="ml1">
+	  <span class="text-wrapper">
+	    <span class="line line1"></span>
+	    <span class="letters">NEW URBANISM</span>
+	    <span class="line line2"></span>
+	  </span>
+	</h1>
+
+	<!--<canvas id="myCanvas" width="500" height="500" style="border:0px solid #d3d3d3;"> </canvas> -->
+
+	<div id="houseChoice" class="survey"> 
+		<h3> Choose your ideal house </h3>
+		<table id="houseTable">
+			<tr> 
+				<td class="value" value="houseRed.png"> <img value="house1.png" src="static/images/houseRed.png" alt="house1"> </td> 
+				<td class="value" value="apartment.png"> <img value="house2.png"src="static/images/apartment.png" alt="house2"> </td> 
+			</tr>
+			<tr> 
+				<td class="value" value="houseYellow.png"> <img value="houseYellow.png" src="static/images/houseYellow.png" alt="house3"> </td> 
+				<td class="value" value="houseTeal.png"> <img value="house4.png" src="static/images/houseTeal.png" alt="house4"> </td> 
+			</tr>
+		</table>
+		
+	</div>
+
+	<div id="restaurantChoice" class="survey"> 
+		<h3> Choose your favorite eatery </h3>
+		<table id="houseTable">
+			<tr> 
+				<td class="value" value='cafe.png'> <img value='cafeShop.png' src="static/images/cafe.png" alt="cafe"> </td> 
+				<td class="value" value='bakeryshop.png'> <img value='bakery.png' src="static/images/bakeryshop.png" alt="bakery"> </td> 
+			</tr>
+			<tr> 
+				<td class="value" value='pizza.png'> <img value='pizzaShop.png' src="static/images/pizza.png" alt="pizzaShop"> </td> 
+				<td class="value" value='icecream.png'> <img  value='icecreamShop.png' src="static/images/icecream.png" alt="icecreamShop"> </td> 
+			</tr>
+		</table>
+		
+	</div>
+
+
+	<div id="recreationalChoice" class="survey"> 
+		<h3> Choose your favorite recreational shop </h3>
+		<table id="houseTable">
+			<tr> 
+				<td class="value" value='pharm.png'> <img value='pharmacy.png' src="static/images/pharm.png" alt="pharmacy"> </td> 
+				<td class="value" value='florist.png'> <img value='flowerShop.png' src="static/images/florist.png" alt="flower"> </td> 
+			</tr>
+			<tr> 
+				<td class="value" value='movies.png'> <img value='laundry.png' src="static/images/movies.png" alt="movies"> </td> 
+				<td class="value" value='books.png'> <img value='bookshop.png' src="static/images/books.png" alt="bookshop"> </td> 
+			</tr>
+		</table>
+	</div>
+
+	<div id="transportation" class="survey"> 
+		<h3> Choose your favorite mode of transport </h3>
+		<table id="houseTable">
+			<tr> 
+				<td class="value" value='bike1.png'> <img value='bike.png' src="static/images/bike1.png" alt="bike"> </td> 
+				<td class="value" value='walk1.png'> <img value='walk.png' src="static/images/walk1.png" alt="walk"> </td> 
+			</tr>
+			<tr> 
+				<td class="value" value='train1.png'> <img value='train.png' src="static/images/train1.png" alt="train"> </td> 
+				<td class="value" value='bus1.png'> <img value='bus.png' src="static/images/bus1.png" alt="bus"> </td> 
+			</tr>
+		</table>
+		
+	</div>
+
+
+</body>
+	<script>
+		$('.ml1 .letters').each(function(){
+		  $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+		});
+
+		anime.timeline({loop: false})
+		  .add({
+		    targets: '.ml1 .letter',
+		    scale: [0.3,1],
+		    opacity: [0,1],
+		    translateZ: 0,
+		    easing: "easeOutExpo",
+		    duration: 1900,
+		    delay: function(el, i) {
+		      return 70 * (i+1)
+		    }
+		  }).add({
+		    targets: '.ml1 .line',
+		    scaleX: [0,1],
+		    opacity: [0.5,1],
+		    easing: "easeOutExpo",
+		    duration: 700,
+		    offset: '-=875',
+		    delay: function(el, i, l) {
+		      return 80 * (l - i);
+		    }
+		  })
+
+		  		/*var cvs = document.getElementsByTagName("canvas")[0];
+				var ctx = cvs.getContext("2d");
+				ctx.lineWidth = 3;
+
+				function drawLine(x1,y1,x2,y2,ratio) {
+				  ctx.moveTo(x1,y1);
+				  x2 = x1 + ratio * (x2-x1);
+				  y2 = y1 + ratio * (y2-y1);
+				  ctx.lineTo(x2,y2);
+				  ctx.stroke();
+				}
+
+				function animate(x1,y1,x2,y2,ratio) {
+				  ratio = ratio || 0;
+				  drawLine(x1, y1, x2, y2, ratio)
+				  //drawLine(0,300,50,300,ratio);
+				  if(ratio<1) {
+				    requestAnimationFrame(function() {
+				      animate(x1, y1, x2, y2, ratio + 0.01);
+				    });
+				  }
+				}
+
+				setTimeout(function(){
+					drawCity()
+				}, 3000)
+
+				function drawCity(){
+					animate(0,300,50,300,0)
+					animate(50,300,50,150,0)
+					animate(50,150,110,150,0)
+					animate(50,150,110,150,0)
+					animate(110,150,110,225,0)
+					animate(110,225,130,225,0)
+					animate(130,225,130,110,0)
+					animate(130, 110, 200, 110, 0);
+					animate(200, 110, 200, 200, 0);
+					animate(200, 200, 230, 200, 0);
+					animate(230, 200, 230, 150, 0);
+					animate(230, 150, 290, 150, 0);
+					animate(290, 150, 290, 200, 0);
+					animate(290, 200, 310, 200, 0);
+					animate(310, 200, 310, 70, 0);
+					animate(310, 70, 390, 70);
+					animate(390, 70, 390, 255);
+					animate(390, 255, 410, 255);
+					animate(410, 255, 410, 125);
+					animate(410, 125, 480, 125);
+					animate(480, 125, 480, 250);
+					animate(480, 250, 500, 250); 
+
+					document.getElementById('title').style.fontSize = '50px';
+					document.body.style.backgroundColor = 'white'
+
+					setTimeout(function(){
+						setUpPage()
+					}, 5000)
+					
+				}*/
+
+				shrinkFont = setTimeout(function(){
+					document.getElementById('title').style.fontSize = '0px';
+					document.body.style.backgroundColor = 'white'
+				}, 3000)
+
+
+
+				timeout = setTimeout(function(){
+						setUpPage()
+					}, 6000)
+
+				function setUpPage(){
+					document.getElementById('houseChoice').style.display = 'inline-block';
+					setTimeout(function(){
+						document.getElementById('houseChoice').style.opacity = '1';
+					}, 1000)
+					
+				}
+
+				data = ""
+
+
+				house = document.getElementById('houseChoice')
+				restaurant = document.getElementById('restaurantChoice')
+				recreation = document.getElementById('recreationalChoice')
+				transport = document.getElementById('transportation')
+
+
+				/*$("td").click(function() {
+				  //alert($(this).attr('value'))
+				  for(i = 0; i < 4; i++){
+				  	if(i == 0) house($(this).attr('value'))
+				  	else if(i == 1) restaurant($(this).attr('value'))
+				  	else if(i == 2) recreation($(this).attr('value'))
+				  	else if(i == 3) transport($(this).attr('value'))
+				  }
+				});*/
+				
+
+				$('#houseChoice td').click(function(){
+					//alert($(this).attr('value'))
+					data += "house="+ $(this).attr('value')
+					house.style.display = 'none';
+					house.innerHTML = " "
+					restaurant.style.opacity = '1';
+				})
+
+				$('#restaurantChoice td').click(function(){
+					//alert($(this).attr('value'))
+					data += "&restaurant=" + $(this).attr('value')
+					restaurant.style.opacity = '0';
+					restaurant.style.display = 'none';
+					recreation.style.opacity = '1';
+				})
+
+				$('#recreationalChoice td').click(function(){
+					//alert($(this).attr('value'))
+					data += "&recreation=" + $(this).attr('value')
+					recreation.style.display = 'none';
+					transport.style.opacity = '1';
+				})
+
+				$('#transportation td').click(function(){
+					//alert($(this).attr('value'))
+					data += "&transport=" + $(this).attr('value')
+					console.log(data)
+					makeRequest('POST', '/submit', data, function(){
+		         		console.log("submitting")
+		         		window.location.href = '/dashboard';
+		         	})
+				})
+
+
+				
+				
+			/*	transport.addEventListener('click', function(){
+					data += "&transport=" + $(this).find('td.value').attr('value')
+					console.log(data)
+					makeRequest('POST', '/submit', data, function(){
+		         		console.log("submitting")
+		         		window.location.href = '/dashboard';
+		         	})
+				})*/
+
+
+				function makeRequest(method, url, data, callback) {
+		            var req = new XMLHttpRequest();
+
+		            req.onreadystatechange = function () {
+		            	callback(req);
+		            }
+
+		            req.open(method, url, true);
+
+		            if (data) {
+		            	req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		                req.send(data);
+		            } else {
+		                req.send();
+		            }
+		        }
+				
+	</script>
+</html>

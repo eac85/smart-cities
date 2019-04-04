@@ -1,0 +1,208 @@
+<!Doctype html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<style type="text/css">
+		body {
+			background-color: whitesmoke;
+		}
+
+		#restart {
+			position: absolute;
+		}
+
+		@font-face{
+			font-family: Marker;
+			src: url("static/fonts/Comic Marker Deluxe.otf");
+		}
+
+		.modal {
+		  font-size: 50px;
+		  font-family: Marker;
+		  display: none; /* Hidden by default */
+		  position: fixed; /* Stay in place */
+		  z-index: 1; /* Sit on top */
+		  padding-top: 100px; /* Location of the box */
+		  left: 0;
+		  top: 0;
+		  width: 100%; /* Full width */
+		  height: 100%; /* Full height */
+		  overflow: auto; /* Enable scroll if needed */
+		  background-color: rgb(0,0,0); /* Fallback color */
+		  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		}
+
+		.modal-content {
+		  background-image: url("static/images/paper.jpg");
+		  margin: auto;
+		  padding: 20px;
+		  border: 1px solid #888;
+		  width: 80%;
+		}
+
+		/* The Close Button */
+		.close {
+		  color: #aaaaaa;
+		  float: right;
+		  font-size: 28px;
+		  font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+		  color: #000;
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+		#greenspace {
+			position: absolute;
+			width: 90vw;
+			left: 0px;
+			top: 45px;
+			z-index: -5;
+		}
+
+		#house {
+			position: absolute;
+			height: 120px;
+			left: 350px;
+			top: 310px;	
+		}
+
+		#location {
+			height: 60px;
+			z-index: 5;
+		}
+
+		.location:hover img{
+			display: inline-block;
+		}
+
+		#recreation {
+			position: absolute;
+			height: 120px;
+			left: 590px;
+			top: 240px;	
+		}
+
+		#restaurant {
+			position: absolute;
+			height: 120px;
+			left: 480px;
+			top: 270px;	
+		}
+
+		#transport {
+			position: absolute;
+			height: 150px;
+			left: 490px;
+			top: 440px;	
+		}
+
+		#library {
+			position: absolute;
+			height: 100px;
+			left: 600px;
+			top: 300px;	
+			-webkit-transition: opacity 5s; /* For Safari 3.1 to 6.0 */
+  			transition: opacity 5s;
+		}
+
+		@font-face{
+			font-family: HomenuliShadow;
+			src: url(static/fonts/HomenuliShadow.ttf);
+		}
+
+		#title {
+			opacity: 1;
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			font-family: HomenuliShadow;
+			font-size: 40px;
+		}
+
+		#learn {
+			position: absolute;
+			top: 50px;
+			left: 10px;
+			font-size: 15px;
+			text-decoration: underline;
+		}
+
+		#tryAgain {
+			position: absolute;
+			top: 80px;
+			left: 10px;
+			font-size: 15px;
+			text-decoration: underline;
+		}
+
+		
+	</style>
+</head>
+<body>
+	<div id='title'> New Urbanism </div>
+	<div id='learn'> <a href="/learnMore"> learn more </a> </div>
+	<div id='tryAgain'> <a href="/"> try again! </a> </div>
+	<div> <img id="location" src="static/images/location.png" alt="Logo" style="position: absolute; height: 60px; display: none"> </div>
+	<img id="greenspace" src="static/images/town.png" alt="Logo">
+	<img class="selected" id="house" src="static/images/{{house}}" alt="Logo"> 
+	<img class="selected" id="recreation" src="static/images/{{recreation}}" alt="Logo">
+	<img class="selected" id="restaurant" src="static/images/{{restaurant}}" alt="Logo"> 
+	<img class="selected" id="transport" src="static/images/{{transport}}" alt="Logo"> 
+
+	<div id="myModal" class="modal">
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <p id='modalText'>Some text in the Modal..</p>
+	</div>
+
+</div>
+</body>
+	<script>
+		var modal = document.getElementById('myModal');
+		var text = document.getElementById('modalText');
+		var span = document.getElementsByClassName("close")[0];
+
+
+		$('#house').click(function(){
+
+			text.innerHTML = 'By choosing a home in a New Urbanism community, you are choosing safer city planning, you are guaranteed a healthier lifestyle, and you are contributing to the elimination of sprawl <br>' + `<img src=\"../static/images/{{house}}\" height=\"250px\">`;
+			modal.style.display = "block";
+		})
+		$('#recreation').click(function(){
+			text.innerHTML = 'By choosing this recreational building, {{ recreationExplanation }}' + ` <br> <img src=\"../static/images/{{recreation}}\" height=\"250px\">`
+			modal.style.display = "block";
+			//alert('By choosing this, {{ recreationExplanation }}')
+		})
+		$('#restaurant').click(function(){
+			text.innerHTML = 'By choosing this eatery, {{ restaurantExplanation }}' + ` <br> <img src=\"../static/images/{{restaurant}}\" height=\"250px\">`
+			modal.style.display = "block";
+			//alert('By choosing this, {{ restaurantExplanation }}')
+		})
+		$('#transport').click(function(){
+			text.innerHTML = 'By choosing this transportation, {{ transportExplanation }}' + ` <br> <img src=\"../static/images/{{transport}}\" height=\"250px\">`
+			modal.style.display = "block";
+			//alert('By choosing this, {{ transportExplanation }}')
+		})
+
+		$('.selected').hover(function(){
+			var div = document.getElementById('location');
+			div.style.top = $(this).position().top - 50 + 'px'
+			div.style.left = $(this).position().left + (this.width/4) + 'px'
+			div.style.display = 'inline-block'
+		})
+		
+		span.onclick = function() {
+		  modal.style.display = "none";
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		  if (event.target == modal) {
+		    modal.style.display = "none";
+		  }
+		}
+	</script>
+</html>

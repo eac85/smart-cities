@@ -1,0 +1,82 @@
+<!Doctype html>
+<html>
+<head>
+	<style>
+
+	body {
+		margin: 20 100px 20px 100px	}
+
+		body {
+			margin-left: 100px ;
+		}
+	</style>
+</head>
+<body>
+	<h1> New Urbanism </h1>
+	<h2> Design your perfect community </h2>
+	<h3> Choose your ideal house </h3>
+	<form action="" id="house">
+	  <input type="radio" name="house" value="1"> <img src="static/images/house1.png" alt="Logo"><br>
+	  <input type="radio" name="house" value="2"> <img src="static/images/house2.png" alt="Logo"><br>
+	  <input type="radio" name="house" value="3"> <img src="static/images/house3.png" alt="Logo"><br> 
+	  <input type="radio" name="house" value="4"> <img src="static/images/house4.png" alt="Logo"><br>  
+	</form>
+
+
+	<h3> Choose your favorite place to eat </h3>
+	<form action="" id="eatery">
+	  <input type="radio" name="shops" value="icecreamshop"> <img src="static/images/icecreamshop.png" alt="Logo"><br>
+	  <input type="radio" name="shops" value="pizza"> <img src="static/images/pizzashop.png" alt="Logo"><br>
+	  <input type="radio" name="shops" value="cafe"> <img src="static/images/cafeshop.png" alt="Logo"><br> 
+	  <input type="radio" name="shops" value="bakery"> <img src="static/images/bakery.png" alt="Logo"><br>  
+	</form>
+
+	<h3> Choose your favorite recreational shop </h3>
+	<form action="" id="recreation">
+	  <input type="radio" name="shops" value="flower"> <img src="static/images/flowershop.png" alt="Logo"><br>
+	  <input type="radio" name="shops" value="bookshop"> <img src="static/images/bookshop.png" alt="Logo"><br>
+	  <input type="radio" name="shops" value="pharmacy"> <img src="static/images/pharmacy.png" alt="Logo"><br> 
+	  <input type="radio" name="shops" value="laundry"> <img src="static/images/laundry.png" alt="Logo"><br>  
+	</form>
+
+
+	<h3> What is your favorite sustainable form of transportation </h3>
+	<form action="" id="transport">
+	  <input type="radio" name="transport" value="bike"> <img src="static/images/bike.png" alt="Logo"><br>
+	  <input type="radio" name="transport" value="bus"> <img src="static/images/bus.png" alt="Logo"><br>
+	  <input type="radio" name="transport" value="walk"> <img src="static/images/walk.png" alt="Logo"><br> 
+	  <input type="radio" name="transport" value="train"> <img src="static/images/train.png" alt="Logo"><br>  
+	</form>
+
+	<button onclick="submit()">  Submit </button>
+</body>
+	<script> 
+
+		function makeRequest(method, url, data, callback) {
+            var req = new XMLHttpRequest();
+
+            req.onreadystatechange = function () {
+            	callback(req);
+            }
+
+            req.open(method, url, true);
+
+            if (data) {
+            	req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                req.send(data);
+            } else {
+                req.send();
+            }
+         }
+
+         function submit(){
+         	data = "house="+document.getElementById('house').value+"&restuarant="+document.getElementById('eatery').value+
+				"&recreation="+document.getElementById('recreation').value+"&transport="+document.getElementById('transport').value;
+			console.log(data)
+         	makeRequest('POST', '/submit', data, function(){
+         		console.log("ran")
+         	})
+
+         }
+	</script>
+</html>
