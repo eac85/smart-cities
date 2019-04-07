@@ -57,3 +57,8 @@ def reason(png):
 		return 'you are paying for public transit which benefits the community and you can avoid rush hour traffic that may be prevalent on the street'
 	elif png == 'walk1.png':
 		return 'you are reducing your carbon footprint and getting exercise'
+
+
+if __name__ == '__main__':
+     app.debug = False
+     app.run(host='127.0.0.1', port=5000)
