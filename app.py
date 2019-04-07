@@ -58,7 +58,7 @@ def reason(png):
 	elif png == 'walk1.png':
 		return 'you are reducing your carbon footprint and getting exercise'
 
- if __name__ == '__main__':
-     app.debug = True
-     port = int(os.environ.get("PORT", 5000))
-     app.run(host='0.0.0.0', port=port)
+if __name__ == '__main__':
+	app.debug = True
+	port = int(os.environ.get("PORT", 5000))
+	app.run(host='0.0.0.0', port=port)
