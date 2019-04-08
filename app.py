@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file, jsonify
+from waitress import serve
+import waitress
 
 app = Flask(__name__)
 
@@ -59,5 +61,6 @@ def reason(png):
 		return 'you are reducing your carbon footprint and getting exercise'
 
 if __name__ == '__main__':
-	app.debug = False
-	app.run(host='0.0.0.0', port=5000)
+	waitress.serve(app, host='0.0.0.0', port=5000, url_scheme='https')
+	#app.debug = False
+	#app.run(host='0.0.0.0')
